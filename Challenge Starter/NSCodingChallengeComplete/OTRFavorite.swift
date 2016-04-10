@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OTRFavorite {
+class OTRFavorite: NSObject {
 
   var episode: OTREpisode
   var favoriteDate: NSDate
@@ -19,5 +19,25 @@ class OTRFavorite {
     self.favoriteDate = favoriteDate
     self.note = note
   }
+    
+    override internal var description: String {
+        return "\(episode) - \(favoriteDate) - \(note)"
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        guard let episode = aDecoder.decodeObjectForKey("favoriteEpisode") as? OTREpisode,
+            favoriteDate = aDecoder.decodeObjectForKey("favoriteDate") as? NSDate,
+            note = aDecoder.decodeObjectForKey("favoriteNote") as? String
+            else {
+                return nil
+            }
+        self.init(episode:episode, favoriteDate:favoriteDate, note:note)
+    }
+    
+    func encodeWithCoder(aCoder:NSCoder) {
+        aCoder.encodeObject(episode, forKey: "favoriteEpisode")
+        aCoder.encodeObject(favoriteDate, forKey: "favoriteDate")
+        aCoder.encodeObject(note, forKey: "favoriteNote")
+    }
   
 }
