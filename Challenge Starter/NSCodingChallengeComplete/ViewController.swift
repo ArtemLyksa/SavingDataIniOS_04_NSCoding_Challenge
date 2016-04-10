@@ -114,6 +114,8 @@ class ViewController: UIViewController {
     
     let unarchivedEpisodes = rootObject!["Episodes"]!! as! [OTREpisode]
     let unarchivedFavorites = rootObject!["Favorites"]!! as! [OTRFavorite]
+
+
     
     for episode in unarchivedEpisodes {
       print(episode)
@@ -122,6 +124,7 @@ class ViewController: UIViewController {
     for favorite in unarchivedFavorites {
       print(favorite)
     }
+
     
     
     
